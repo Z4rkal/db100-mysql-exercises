@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const async = require('async');
 const moment = require('moment');
-const config = require('../config.js');
 
 chai.use(require('chai-sorted'));
 chai.use(require('chai-as-promised'));
@@ -111,9 +110,9 @@ describe('SQL Exercises -', function () {
     sqlConnection = new mysql.createConnection({
       multipleStatements: true,
       host: 'localhost',
-      user: config.username,
-      password: config.password,
-      database: 'sakila'
+      user: 'root',
+      database: 'sakila',
+      insecureAuth: true
     });
 
     sqlConnection.connect();
@@ -161,7 +160,7 @@ describe('SQL Exercises -', function () {
     it('3d. Select customers with first name ending with N and last name beginning with S', () => {
       gradeExercise(results[9], 11, allCustomerColumns);
     });
-    it('3e. Select inactive customers with last name beginning with M', () => {
+    it('3e. Select inactive customers with last name ending with M', () => {
       gradeExercise(results[10], 30, allCustomerColumns);
 
     });
